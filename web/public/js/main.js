@@ -1,0 +1,2 @@
+(()=>{"use strict";alert("Hello world!")})();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5qcyIsIm1hcHBpbmdzIjoibUJBQ0lBLE1BQU0saUIiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly93ZWIvLi9zcmMvaW5kZXgudHMiXSwic291cmNlc0NvbnRlbnQiOlsiZnVuY3Rpb24gaGVsbG8oKSB7XHJcbiAgICBhbGVydCgnSGVsbG8gd29ybGQhJyk7XHJcbn1cclxuXHJcbmhlbGxvKCk7Il0sIm5hbWVzIjpbImFsZXJ0Il0sInNvdXJjZVJvb3QiOiIifQ==
