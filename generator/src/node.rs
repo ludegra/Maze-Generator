@@ -1,47 +1,53 @@
 use std::sync::atomic::{AtomicU32, Ordering};
 
-use wasm_bindgen::prelude::wasm_bindgen;
+#[derive(Copy, Clone, Debug)]
+pub enum Direction {
+    Up,
+    Down,
+    Left,
+    Right,
+}
 
-static ID: AtomicU32 = AtomicU32::new(0);
+#[derive(Copy, Clone, Debug)]
+pub struct Connection {
+    pub direction: Direction,
+    pub index: usize,
+    pub active: bool,
+}
 
-#[wasm_bindgen]
+#[derive(Clone, Debug)]
 pub struct Node {
-    _id: u32,
-    connections: Vec<u32>
+    connections: Vec<Connection>,
 }
 
 impl Node {
     pub fn new() -> Self {
-        let id = ID.fetch_add(1, Ordering::Relaxed);
         let connections = Vec::new();
 
-        Self { _id: id, connections }
+        Self { connections }
     }
 
     /// Adds an id of a Node to the connections
-    pub fn connect(&mut self, id: u32) {
-        self.connections.push(id);
-    }
-
-    /// Adds multiple ids of Nodes to the connections
-    pub fn connect_multiple(&mut self, ids: &[u32]) {
-        self.connections.extend(ids);
+    pub fn connect(&mut self, connection: Connection) {
+        self.connections.push(connection);
     }
 
     /// Removes an id of a Node from the connections
-    pub fn disconnect(&mut self, id: u32) {
-        self.connections.retain(|&x| x != id);
+    pub fn disconnect(&mut self, index: usize) {
+        self.connections.retain(|&x| x.index != index);
     }
 
     /// Removes multiple ids of Nodes from the connections
-    pub fn disconnect_multiple(&mut self, ids: &[u32]) {
-        self.connections.retain(|&x| !ids.contains(&x));
+    pub fn disconnect_multiple(&mut self, ids: &[usize]) {
+        self.connections.retain(|&x| !ids.contains(&x.index));
     }
-}
 
-#[wasm_bindgen]
-impl Node {
-    pub fn get_connections(&self) -> Vec<u32> {
+    /// Returns the connections of the Node   
+    pub fn get_connections(&self) -> Vec<Connection> {
         self.connections.clone()
+    }
+
+    pub fn disable_connection(&mut self, index: usize) {
+        self.connections.iter_mut().find(|x| x.index == index).unwrap().active = false;
     }
 }

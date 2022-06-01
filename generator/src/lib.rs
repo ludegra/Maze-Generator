@@ -1,4 +1,4 @@
-mod generator;
+pub mod generator;
 mod node;
 
 use wasm_bindgen::prelude::*;
@@ -12,3 +12,4 @@ extern {
 pub fn greet() {
     alert("Hello, generator!");
 }
+

@@ -7,7 +7,12 @@ edition = "2018"
 [lib]
 crate-type = ["cdylib", "rlib"]
 
+[[bin]]
+name = "test"
+
 [dependencies]
+getrandom = { version = "0.2.6", features = ["js"] }
+rand = "0.8.5"
 wasm-bindgen = "0.2.74"
 
 [dev-dependencies]
