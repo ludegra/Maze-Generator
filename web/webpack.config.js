@@ -20,4 +20,7 @@ const path = require('path');
       filename: 'main.js',
       path: path.resolve(__dirname, 'public/js'),
     },
+    experiments: {
+      asyncWebAssembly: true,
+    },
   };

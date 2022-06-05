@@ -9,6 +9,9 @@
   },
   "author": "Ludwig Granstedt, Anton Arturén",
   "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "generator": "file:../generator/pkg"
+  },
   "devDependencies": {
     "ts-loader": "^9.3.0",
     "typescript": "^4.6.4",

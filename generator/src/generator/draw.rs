@@ -6,7 +6,7 @@ mod circle;
 pub fn generate_svg(maze: Vec<Node>, method: &str, size: &[u32], cell_size: u32) -> String {
     match method {
         "rectangle" => rectangle::generate_svg(maze, size, cell_size),
-        "circle" => circle::generate_svg(maze, size),
+        "circle" => circle::generate_svg(maze, size, cell_size),
         _ => panic!("Unknown method"),
     }
 }

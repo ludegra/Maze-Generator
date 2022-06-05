@@ -15,9 +15,9 @@ fn search(nodes: &mut Vec<Node>, visited: &mut Vec<usize>, index: usize, goal: u
     connections.shuffle(&mut rand::thread_rng());
 
     if index != goal {
-        for connection in connections.iter_mut() {
+        for connection in connections {
             if !visited.contains(&connection.index) {
-                connection.active = false;
+                nodes[index].disable_connection(connection.index);
                 nodes[connection.index].disable_connection(index);
 
                 search(nodes, visited, connection.index, goal);

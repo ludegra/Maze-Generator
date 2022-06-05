@@ -1,5 +1,3 @@
-use std::collections::HashMap;
-
 use crate::node::{Direction, Node};
 
 use super::draw_path;
@@ -29,6 +27,7 @@ pub fn generate_svg(maze: Vec<Node>, size: &[u32], cell_size: u32) -> String {
             end_x,
             (start_y, end_y),
             width,
+            height,
         ),
     ));
 
@@ -43,6 +42,7 @@ pub fn generate_svg(maze: Vec<Node>, size: &[u32], cell_size: u32) -> String {
             end_x,
             (start_y, end_y),
             width,
+            height,
         ),
     ));
 
@@ -57,6 +57,7 @@ pub fn generate_svg(maze: Vec<Node>, size: &[u32], cell_size: u32) -> String {
             end_y,
             (start_x, end_x),
             height,
+            width,
         ),
     ));
 
@@ -71,6 +72,7 @@ pub fn generate_svg(maze: Vec<Node>, size: &[u32], cell_size: u32) -> String {
             end_y,
             (start_x, end_x),
             height,
+            width,
         ),
     ));
 
@@ -96,22 +98,10 @@ pub fn generate_svg(maze: Vec<Node>, size: &[u32], cell_size: u32) -> String {
             let end_y: usize;
 
             match connection.direction {
-                Direction::Up => {
-                    start_x = x;
-                    start_y = y;
-                    end_x = x + cell_size;
-                    end_y = y;
-                }
                 Direction::Down => {
                     start_x = x;
                     start_y = y + cell_size;
                     end_x = x + cell_size;
-                    end_y = y + cell_size;
-                }
-                Direction::Left => {
-                    start_x = x;
-                    start_y = y;
-                    end_x = x;
                     end_y = y + cell_size;
                 }
                 Direction::Right => {
@@ -120,6 +110,7 @@ pub fn generate_svg(maze: Vec<Node>, size: &[u32], cell_size: u32) -> String {
                     end_x = x + cell_size;
                     end_y = y + cell_size;
                 }
+                _ => continue,
             }
 
             children.push(draw_path(
@@ -156,6 +147,7 @@ fn draw_edge(
     end: u32,
     comparison: (u32, u32),
     side_len: u32,
+    perpendicular: u32,
 ) -> Vec<String> {
     let mut commands = Vec::new();
 
@@ -171,10 +163,10 @@ fn draw_edge(
             move_command = format!("m {} 0", cell_size);
         }
         Side::Bottom => {
-            commands.push(format!("M 0 {}", (side_len) * cell_size));
+            commands.push(format!("M 0 {}", perpendicular * cell_size));
             direction = "H";
             condition = side_len - 1;
-            move_command = format!("m 0 {}", cell_size);
+            move_command = format!("m {} 0", cell_size);
         }
         Side::Left => {
             commands.push(String::from("M 0 0"));
@@ -183,7 +175,7 @@ fn draw_edge(
             move_command = format!("m {} 0", cell_size);
         }
         Side::Right => {
-            commands.push(format!("M {} 0", (side_len) * cell_size));
+            commands.push(format!("M {} 0", perpendicular * cell_size));
             direction = "V";
             condition = side_len - 1;
             move_command = format!("m 0 {}", cell_size);

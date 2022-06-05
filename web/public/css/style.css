@@ -6,13 +6,10 @@
 
 .maze-selector {
     margin-bottom: 1em;
-}
-
-.select {
     position: relative;
 }
 
-.select svg {
+#select-arrow {
     position: absolute;
     right: 12px;
     top: calc(50% - 3px);
@@ -26,7 +23,7 @@
     pointer-events: none;
 }
 
-.select select {
+.select {
     -webkit-appearance: none;
     padding: 7px 40px 7px 12px;
     width: 100%;
@@ -40,21 +37,21 @@
     transition: all 150ms ease;
 }
 
-.select select:required:invalid {
+.select:required:invalid {
     color: #5a667f;
 }
 
-.select select option {
+.select option {
     color: #223254;
 }
 
-.select select:focus {
+.select:focus {
     outline: none;
     border-color: #07f;
     box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
 }
 
-.select select:hover+svg {
+.select:hover+svg {
     stroke: #07f;
 }
 

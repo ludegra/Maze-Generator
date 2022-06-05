@@ -1,56 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <title>Maze Generator</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Maze Generator</title>
-</head>
-
-<body>
-    <div class="app">
-        <form action="none">
-            <div class="maze-selector">
-                <label class="select" for="maze-type">
-                    <select id="maze-type" required="required">
-                        <option value="Rectangle">Rectangle</option>
-                        <option value="Circle">Circle</option>
+    <body>
+        <div class="app">
+            <form onsubmit="return false;" id="maze-options">
+                <div class="maze-selector">
+                    <label id="select-label" for="maze-type"> Maze Type </label>
+                    <select class="select" id="maze-type" required="required">
+                        <option value="rectangle">Rectangle</option>
+                        <option value="circle">Circle</option>
                     </select>
-                    <svg>
+                    <svg id="select-arrow">
                         <use xlink:href="#select-arrow-down"></use>
                     </svg>
-                </label>
-            </div>
-            <div class="options" id="rect-options">
-                <div class="input-container"><label for="x-size">Width</label><input class="cord-input" placeholder="0"
-                        type="number" name="" id="x-size"></div>
-                <div class="input-container"><label for="y-size">Height</label><input class="cord-input" placeholder="0"
-                        type="number" name="" id="y-size">
                 </div>
-            </div>
-            <!-- <div class="options" id="circle-options">
+                <div class="options" id="rect-options">
+                    <div class="input-container">
+                        <label for="maze-width">Width</label>
+                        <input
+                            class="cord-input"
+                            placeholder="0"
+                            type="number"
+                            name=""
+                            id="maze-width"
+                            value="15"
+                            min="1"
+                        />
+                    </div>
+                    <div class="input-container">
+                        <label for="maze-height">Height</label>
+                        <input
+                            class="cord-input"
+                            placeholder="0"
+                            type="number"
+                            name=""
+                            id="maze-height"
+                            value="15"
+                            min="1"
+                        />
+                    </div>
+                </div>
+                <!-- <div class="options" id="circle-options">
                 <div class="input-container"><label for="radius-size">Radius</label><input class="cord-input" placeholder="0" type="number"
                         name="" id="radius-size"></div>
                 <div class="input-container"><label for="y-size">Någonting!</label><input class="cord-input" placeholder="0" type="number"
                         name="" id="y-size">
                 </div>
-            </div> -->
-        </form>
+                </div> -->
 
-        <div class="maze">
-            <!-- SVG goes here -->
+                <button type="submit">Generate</button>
+            </form>
+
+            <div id="maze"></div>
         </div>
-    </div>
-
-    <svg class="sprites">
-        <symbol id="select-arrow-down" viewbox="0 0 10 6">
-            <polyline points="1 1 5 5 9 1"></polyline>
-        </symbol>
-    </svg>
-
-    <!-- <script src="js/main.js"></script> -->
-</body>
-
+        <svg class="sprites">
+            <symbol id="select-arrow-down" viewbox="0 0 10 6">
+                <polyline points="1 1 5 5 9 1"></polyline>
+            </symbol>
+        </svg>
+        <script src="js/main.js"></script>
+    </body>
 </html>

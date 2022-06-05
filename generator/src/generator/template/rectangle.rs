@@ -24,22 +24,10 @@ pub fn generate(size: &[u32]) -> (Vec<Node>, usize, usize) {
         for x in 0..width {
             let mut node = Node::new();
 
-            macro_rules! connect {
-                ($connection:expr, $direction:expr, $index:expr) => {
-                    if $connection {
-                        node.connect(Connection {
-                            direction: $direction,
-                            index: $index,
-                            active: true,
-                        });
-                    }
-                };
-            }
-
-            connect!(x > 0, Direction::Left, index - 1);
-            connect!(y > 0, Direction::Up, index - width);
-            connect!(x < width - 1, Direction::Right, index + 1);
-            connect!(y < height - 1, Direction::Down, index + width);
+            connect_node!(node, x > 0, Direction::Left, index - 1);
+            connect_node!(node, y > 0, Direction::Up, index - width);
+            connect_node!(node, x < width - 1, Direction::Right, index + 1);
+            connect_node!(node, y < height - 1, Direction::Down, index + width);
 
             index += 1;
             cells.push(node);
