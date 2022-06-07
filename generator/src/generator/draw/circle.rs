@@ -88,7 +88,7 @@ fn vec_add((x1, y1): (f32, f32), (x2, y2): (f32, f32)) -> (f32, f32) {
     (x1 + x2, y1 + y2)
 }
 
-/// God only knows how this works
+/// Only God knows how this works
 fn svg_ellipse_arc(
     (cx, cy): (f32, f32),
     (rx, ry): (f32, f32),
