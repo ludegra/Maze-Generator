@@ -7,9 +7,3 @@ use wasm_bindgen::prelude::*;
 extern {
     fn alert(s: &str);
 }
-
-#[wasm_bindgen]
-pub fn greet() {
-    alert("Hello, generator!");
-}
-

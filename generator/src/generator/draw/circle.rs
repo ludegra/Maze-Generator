@@ -1,6 +1,6 @@
 use crate::{
     generator::tools::nodes_in_layer,
-    node::{Direction, Node}, alert,
+    node::{Direction, Node},
 };
 
 use super::draw_path;
@@ -39,9 +39,15 @@ pub fn generate_svg(maze: Vec<Node>, size: &[u32], cell_size: u32, ending_index:
                     _ => continue,
                 }
             }
-            
+
             if layer == radius - 1 && index != ending_index {
-                children.push(draw_circle_segment(i, layer + 1, layer_size, cell_size, radius));
+                children.push(draw_circle_segment(
+                    i,
+                    layer + 1,
+                    layer_size,
+                    cell_size,
+                    radius,
+                ));
             }
 
             index += 1;
@@ -112,7 +118,11 @@ fn svg_ellipse_arc(
         ),
         (cx, cy),
     );
-    let fa = if sweep_angle > std::f32::consts::PI { 1 } else { 0 };
+    let fa = if sweep_angle > std::f32::consts::PI {
+        1
+    } else {
+        0
+    };
     let fs = if sweep_angle > 0.0 { 1 } else { 0 };
 
     let mut path = Vec::new();
