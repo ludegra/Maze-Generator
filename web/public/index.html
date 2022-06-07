@@ -21,7 +21,7 @@
                         <use xlink:href="#select-arrow-down"></use>
                     </svg>
                 </div>
-                <div class="options" id="rect-options">
+                <div class="options" id="rectangle-options">
                     <div class="input-container">
                         <label for="maze-width">Width</label>
                         <input
@@ -47,13 +47,20 @@
                         />
                     </div>
                 </div>
-                <!-- <div class="options" id="circle-options">
-                <div class="input-container"><label for="radius-size">Radius</label><input class="cord-input" placeholder="0" type="number"
-                        name="" id="radius-size"></div>
-                <div class="input-container"><label for="y-size">Någonting!</label><input class="cord-input" placeholder="0" type="number"
-                        name="" id="y-size">
+                <div class="options hidden" id="circle-options">
+                    <div class="input-container">
+                        <label for="maze-radius">Radius</label
+                        ><input
+                            class="cord-input"
+                            placeholder="0"
+                            type="number"
+                            name=""
+                            id="maze-radius"
+                            value="5"
+                            min="1"
+                        />
+                    </div>
                 </div>
-                </div> -->
 
                 <button type="submit">Generate</button>
             </form>

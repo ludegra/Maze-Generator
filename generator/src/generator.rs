@@ -2,6 +2,8 @@ use wasm_bindgen::prelude::wasm_bindgen;
 
 mod draw;
 mod logic;
+mod tools;
+
 mod template {
     #[macro_use]
     mod macros;
@@ -18,10 +20,12 @@ pub fn generate(method: &str, size: &[u32], cell_size: u32) -> String {
         _ => panic!("Unknown method"),
     };
 
+    // println!("{:?}", maze);
+
     logic::generate(&mut maze, starting_index, ending_index);
 
 
-    let svg = draw::generate_svg(maze, method, size, cell_size);
+    let svg = draw::generate_svg(maze, method, size, cell_size, ending_index);
 
     svg
 }

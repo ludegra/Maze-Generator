@@ -1,7 +1,7 @@
 use generator::generator::generate;
 
 fn main() {
-    generate("circle", &[3, 2], 75);
+    let maze =generate("circle", &[9, 2], 75);
 
-    // println!("{}", maze);
+    println!("{}", maze);
 }

@@ -17,7 +17,11 @@ fn search(nodes: &mut Vec<Node>, visited: &mut Vec<usize>, index: usize, goal: u
     if index != goal {
         for connection in connections {
             if !visited.contains(&connection.index) {
+                println!("{} -> {} ({})", index, connection.index, connection.direction);
+
+                println!("Dissabiling {} for {}", connection.index, index);
                 nodes[index].disable_connection(connection.index);
+                println!("Dissabiling {} for {}\n", index, connection.index);
                 nodes[connection.index].disable_connection(index);
 
                 search(nodes, visited, connection.index, goal);
